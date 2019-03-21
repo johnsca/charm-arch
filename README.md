@@ -34,7 +34,7 @@ conditions on flags, which in turn are an extendable collection of set /
 not-set markers used to track state or represent events in the charm, based
 on the hooks run or work done by the charm.
 
-# The Juju Controller
+# The Juju Controller and Model
 
 In order to deploy and manage applications with Juju, you have to have a
 controller.  This is essentially an application that maintains the conceptual
@@ -53,10 +53,14 @@ it allocates a machine, VM, container, pod, etc. to run on.  A Juju agent is
 placed on the unit which connects to the controller and then handles the work
 on the unit on behalf of the controller.  The agent loads the code of the charm
 onto that unit, and a series of hooks, or life-cycle events are triggered in
-the charm's code.  As the state of the model changes with other applications
-being deployed, relations being made between applications, storage being
-assigned to applications, etc. additional life-cycle hooks will be triggered in
-the charm by the controller via the agent.
+the charm's code.
+
+![Juju Model](JujuModel.png)
+
+As the state of the model changes with other applications being deployed,
+relations being made between applications, storage being assigned to
+applications, etc. additional life-cycle hooks will be triggered in the charm
+by the controller via the agent.
 
 # Juju Charm Basics
 
