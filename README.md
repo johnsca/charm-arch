@@ -27,7 +27,7 @@ charm includes how that charm relates to other applications via well-defined
 interface protocols, very complex software deployments can be managed through
 extendable, but well-defined mechanisms.
 
-For more efficient code re-use, charms are further broken down into layers,
+For more efficient code reuse, charms are further broken down into layers,
 which are pieces brought in from various locations and shared between charms,
 as well as reactive handlers, which are small Python functions triggered by
 conditions on flags, which in turn are an extendable collection of set /
@@ -95,7 +95,7 @@ directories:
   * `hooks/`
     These are the [low-level lifecycle executables][hooks] invoked directly by
     the Juju agent.  These hooks are very coarse-grained, informing the charm
-    of high-level events such as "this is the first installl", or "some
+    of high-level events such as "this is the first install", or "some
     configuration has changed".  They are only invoked once per event and it is
     up to the charm code to manage any state needed to keep track of which
     hooks have fired, what work the charm did based on that, and what the state
@@ -118,7 +118,7 @@ directories:
     with any dashes changed to underscores.  This layer module can be used
     to expose functions or classes to other layers as part of the layer's API.
 
-  * 'lib/exec.d/'
+  * `lib/exec.d/`
     This is where [pre-bootstrap initialization code][exec.d] can go.  This
     code is run once only, before anything else in the charm, and is intended
     to extend the bootstrap process on a per-charm basis.
@@ -180,14 +180,14 @@ one version to another.
 # Tracking and Reacting to the Lifecycle: Flags and Handlers
 
 Juju informs a charm of changes to its lifecycle and state by triggering hooks
-which repesent specific events, such as config options being changed by the
+which represent specific events, such as config options being changed by the
 operator, or new data being available on a relation.  However, there is
-impossible to know what order these events will happen in, since it will depend
+impossible to know in what order these events will happen, since it will depend
 on external factors such as VM allocation time, network latency, and operator
 actions.  Further, charms will generally need to act on some combination of
 several of these events and specific data being available.  Performing a full
 inspection of the state of the system each time to determine what action to
-take is prohibative and complicates the logic of the charm.
+take is prohibitive and complicates the logic of the charm.
 
 The reactive framework enables charms to track the state of the system by
 setting flags to represent certain conditions having been met.  The charms can
@@ -267,7 +267,7 @@ This KV is provided by the [charmhelpers][unitdata] library for a charm to
 store structured data in.  As implied by the name, the data is unit-specific
 and cannot be seen by any other unit.  The values can any JSON-serializable
 data.  There are no automatic flags currently available to react to changes to
-this data.  This data is stored in a sqlite database in the charm directory,
+this data.  This data is stored in an sqlite database in the charm directory,
 with permissions set to be only readable by the root user.
 
 [unitdata]: https://charm-helpers.readthedocs.io/en/latest/api/charmhelpers.core.unitdata.html
